@@ -70,7 +70,6 @@ public class ContratoDao {
     public void removerTodos() {
         try {
             em.getTransaction().begin();
-            em.createQuery("DELETE FROM Parcela p").executeUpdate();
             em.createQuery("DELETE FROM Contrato c").executeUpdate();
             em.getTransaction().commit();
         } catch (Exception e) {

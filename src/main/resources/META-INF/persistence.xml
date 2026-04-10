@@ -6,7 +6,7 @@
         <properties>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:postgresql://127.0.0.1:5432/pagamento_servico"/>
             <property name="jakarta.persistence.jdbc.user" value="postgres"/>
-            <property name="jakarta.persistence.jdbc.password" value="1s1"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver"/>
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>

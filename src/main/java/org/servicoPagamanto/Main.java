@@ -29,7 +29,7 @@ public class Main {
         ParcelaDao parcelaDao = new ParcelaDao(em);
 
         try {
-            System.out.println("Entre com os dados do contrato: ");
+           /* System.out.println("Entre com os dados do contrato: ");
             System.out.printf("Numero: ");
             long numero = sc.nextLong();
             System.out.printf("Valor: ");
@@ -48,7 +48,7 @@ public class Main {
 
             System.out.println(contratoService.getValorComJurosContrato(contrato));
 
-            //contratoDao.salvar(contrato);
+            contratoDao.salvar(contrato);*/
 
 
             //lista todos contratos
