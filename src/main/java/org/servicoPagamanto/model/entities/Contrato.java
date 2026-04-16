@@ -1,6 +1,8 @@
 package org.servicoPagamanto.model.entities;
 
 import jakarta.persistence.*;
+import org.servicoPagamanto.model.enums.TipoPagamento;
+import org.servicoPagamanto.service.PagamentoService;
 
 
 import java.math.BigDecimal;
@@ -26,13 +28,22 @@ public class Contrato extends Auditable {
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo_pagamento")
+    private TipoPagamento tipoPagamento;
+
+    @Transient
+    private PagamentoService pagamentoService;
+
     @OneToMany(mappedBy = "contrato",cascade = CascadeType.ALL)
     private List<Parcela> parcelas = new ArrayList<>();
 
-    public Contrato(long numeroContrato, LocalDate dataContrato, BigDecimal valorTotal) {
+    public Contrato(long numeroContrato, LocalDate dataContrato, BigDecimal valorTotal,TipoPagamento tipoPagamento, PagamentoService pagamentoService) {
         this.numeroContrato = numeroContrato;
         this.dataContrato = dataContrato;
         this.valorTotal = valorTotal;
+        this.tipoPagamento = tipoPagamento;
+        this.pagamentoService = pagamentoService;
     }
 
     public Contrato() {
@@ -74,6 +85,22 @@ public class Contrato extends Auditable {
         this.valorTotal = valorTotal;
     }
 
+    public TipoPagamento getTipoPagamento() {
+        return tipoPagamento;
+    }
+
+    public void setTipoPagamento(TipoPagamento tipoPagamento) {
+        this.tipoPagamento = tipoPagamento;
+    }
+
+    public PagamentoService getPagamentoService() {
+        return pagamentoService;
+    }
+
+    public void setPagamentoService(PagamentoService pagamentoService) {
+        this.pagamentoService = pagamentoService;
+    }
+
     public void adicionarParcela(Parcela parcela){
         parcelas.add(parcela);
         parcela.setContrato(this);
@@ -91,6 +118,6 @@ public class Contrato extends Auditable {
                 " numeroContrato=" + numeroContrato +
                 ", dataContrato=" + dataContrato +
                 ", valorTotal=" + valorTotal +
-                ',' + super.toString() ;
+                ", tipo pagamento="+ tipoPagamento + super.toString() ;
     }
 }

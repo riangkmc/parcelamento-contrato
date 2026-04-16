@@ -6,19 +6,19 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
-public class PayPalService implements PagamentoService {
+public class PicPayService implements PagamentoService{
 
     public TipoPagamento getTipo() {
-        return TipoPagamento.PAYPAL;
+        return TipoPagamento.PICPAY;
     }
 
     public BigDecimal taxaPagamento(BigDecimal valor){
-        BigDecimal taxa = new BigDecimal("0.02");
+        BigDecimal taxa = new BigDecimal("0.03");
         return valor.multiply(taxa);
     }
 
     public BigDecimal juros(BigDecimal valor,int meses){
-        BigDecimal taxa = new BigDecimal("0.01");
+        BigDecimal taxa = new BigDecimal("0.02");
         BigDecimal taxaMeses = taxa.multiply(new BigDecimal(meses));
         return valor.multiply(taxaMeses);
     }

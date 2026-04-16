@@ -2,13 +2,18 @@ package org.servicoPagamanto;
 
 import org.servicoPagamanto.model.entities.Contrato;
 import org.servicoPagamanto.model.entities.Parcela;
+import org.servicoPagamanto.model.enums.TipoPagamento;
 import org.servicoPagamanto.service.ContratoService;
+import org.servicoPagamanto.service.PagamentoService;
+import org.servicoPagamanto.service.PayPalService;
+import org.servicoPagamanto.service.PicPayService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -17,15 +22,14 @@ public class Main {
 
     public static void main(String[] args) {
         ApplicationContext context = SpringApplication.run(Main.class, args);
+/*
 
         ContratoService contratoService = context.getBean(ContratoService.class);
         contratoService.removerTodos();
+*/
 
-        /*Scanner sc = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         Locale.setDefault(Locale.US);
-
-        ContratoService contratoService = context.getBean(ContratoService.class);
-
         System.out.println("Entre com os dados do contrato: ");
         System.out.printf("Numero: ");
         long numero = sc.nextLong();
@@ -33,8 +37,20 @@ public class Main {
         BigDecimal valor = sc.nextBigDecimal();
         System.out.printf("Parcelas: ");
         int parcelas = sc.nextInt();
-
-        Contrato contrato = new Contrato(numero, LocalDate.now(), valor);
+        System.out.println("Escolha o tipo de pagamento: ");
+        System.out.println("1 - PicPay");
+        System.out.println("2 - PayPal");
+        int opcao = sc.nextInt();
+        PagamentoService tipoPagamento;
+        if (opcao == 1) {
+            tipoPagamento = new PicPayService();
+        } else if (opcao == 2) {
+            tipoPagamento = new PayPalService();
+        } else {
+            throw new IllegalArgumentException("Opção inválida");
+        }
+        Contrato contrato = new Contrato(numero, LocalDate.now(), valor, tipoPagamento.getTipo(),tipoPagamento);
+        ContratoService contratoService = context.getBean(ContratoService.class);
         contratoService.processarContrato(contrato, parcelas);
         contratoService.salvar(contrato);
         for (Parcela p : contrato.getParcelas()) {
@@ -43,7 +59,16 @@ public class Main {
 
         System.out.println("Salvo no banco!");
 
-        sc.close();*/
+        sc.close();
+
+
+
+       /* ContratoService contratoService = context.getBean(ContratoService.class);
+
+
+        System.out.println(contratoService.getValorComJurosContrato(30L));
+
+        contratoService.imprimirParcelas(30L);*/
 
     }
 }

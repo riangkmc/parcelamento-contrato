@@ -1,5 +1,6 @@
 package org.servicoPagamanto.service;
 
+import jakarta.transaction.Transactional;
 import org.servicoPagamanto.model.entities.Contrato;
 import org.servicoPagamanto.model.entities.Parcela;
 import org.servicoPagamanto.repository.ContratoRepository;
@@ -14,29 +15,30 @@ import java.util.List;
 public class ContratoService {
 
     private final ContratoRepository contratoRepository;
-    private final PagamentoService pagamentoService;
 
-    public ContratoService(ContratoRepository contratoRepository, PagamentoService pagamentoService) {
+
+    public ContratoService(ContratoRepository contratoRepository) {
         this.contratoRepository = contratoRepository;
-        this.pagamentoService = pagamentoService;
     }
 
     public void processarContrato(Contrato contrato, int parcelas) {
         if (parcelas <= 0) {
             throw new IllegalArgumentException("Parcelas deve ser maior que zero");
         }
-
         BigDecimal valorParcelaContrato = contrato.getValorTotal().divide(BigDecimal.valueOf(parcelas), 2, RoundingMode.HALF_UP);
         for (int i = 1; i <= parcelas; i++) {
-            BigDecimal valorComJuros = pagamentoService.juros(valorParcelaContrato, i).add(valorParcelaContrato);
-            BigDecimal valorFinalParcela = pagamentoService.taxaPagamento(valorComJuros).add(valorComJuros);
+            BigDecimal valorComJuros = contrato.getPagamentoService().juros(valorParcelaContrato, i).add(valorParcelaContrato);
+            BigDecimal valorFinalParcela = contrato.getPagamentoService().taxaPagamento(valorComJuros).add(valorComJuros);
             LocalDate dataVencimento = contrato.getDataContrato().plusMonths(i);
             Parcela parcela = new Parcela(dataVencimento, valorFinalParcela);
             contrato.adicionarParcela(parcela);
         }
     }
+    @Transactional
+    public BigDecimal getValorComJurosContrato(Long id) {
+        Contrato contrato = contratoRepository.findById(id)
 
-    public BigDecimal getValorComJurosContrato(Contrato contrato) {
+                .orElseThrow(() -> new RuntimeException("Contrato não encontrado"));
         BigDecimal soma = BigDecimal.ZERO;
         for (Parcela parcela : contrato.getParcelas()) {
             soma = soma.add(parcela.getValor());
@@ -48,6 +50,8 @@ public class ContratoService {
         return contratoRepository.save(contrato);
     }
 
+
+    @Transactional
     public Contrato buscarPorId(Long id) {
         return contratoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Contrato não encontrado"));
@@ -70,5 +74,15 @@ public class ContratoService {
 
     public void removerTodos() {
         contratoRepository.deleteAll();
+    }
+
+    @Transactional
+    public void imprimirParcelas(Long id) {
+        Contrato contrato = contratoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Contrato não encontrado"));
+
+        for (Parcela p : contrato.getParcelas()) {
+            System.out.println(p);
+        }
     }
 }
