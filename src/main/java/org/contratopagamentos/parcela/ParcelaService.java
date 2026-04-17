@@ -1,7 +1,5 @@
-package org.contratopagamentos.service;
+package org.contratopagamentos.parcela;
 
-import org.contratopagamentos.model.entities.Parcela;
-import org.contratopagamentos.repository.ParcelaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

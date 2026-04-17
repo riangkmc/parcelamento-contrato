@@ -1,4 +1,4 @@
-package org.contratopagamentos.model.enums;
+package org.contratopagamentos.pagamento;
 
 public enum TipoPagamento {
     PICPAY,

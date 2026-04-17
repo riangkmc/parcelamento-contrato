@@ -1,8 +1,10 @@
-package org.contratopagamentos.model.entities;
+package org.contratopagamentos.contrato;
 
 import jakarta.persistence.*;
-import org.contratopagamentos.model.enums.TipoPagamento;
-import org.contratopagamentos.service.PagamentoService;
+import org.contratopagamentos.config.Auditable;
+import org.contratopagamentos.pagamento.TipoPagamento;
+import org.contratopagamentos.parcela.Parcela;
+import org.contratopagamentos.pagamento.PagamentoService;
 
 
 import java.math.BigDecimal;

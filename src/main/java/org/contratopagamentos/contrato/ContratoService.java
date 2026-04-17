@@ -1,9 +1,7 @@
-package org.contratopagamentos.service;
+package org.contratopagamentos.contrato;
 
 import jakarta.transaction.Transactional;
-import org.contratopagamentos.model.entities.Contrato;
-import org.contratopagamentos.model.entities.Parcela;
-import org.contratopagamentos.repository.ContratoRepository;
+import org.contratopagamentos.parcela.Parcela;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

@@ -1,11 +1,11 @@
 package org.contratopagamentos;
 
-import org.contratopagamentos.model.entities.Contrato;
-import org.contratopagamentos.model.entities.Parcela;
-import org.contratopagamentos.service.ContratoService;
-import org.contratopagamentos.service.PagamentoService;
-import org.contratopagamentos.service.PayPalService;
-import org.contratopagamentos.service.PicPayService;
+import org.contratopagamentos.contrato.Contrato;
+import org.contratopagamentos.parcela.Parcela;
+import org.contratopagamentos.contrato.ContratoService;
+import org.contratopagamentos.pagamento.PagamentoService;
+import org.contratopagamentos.pagamento.PayPalService;
+import org.contratopagamentos.pagamento.PicPayService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -26,7 +26,7 @@ public class Main {
         contratoService.removerTodos();
 */
 
-        Scanner sc = new Scanner(System.in);
+      /*  Scanner sc = new Scanner(System.in);
         Locale.setDefault(Locale.US);
         System.out.println("Entre com os dados do contrato: ");
         System.out.printf("Numero: ");
@@ -59,7 +59,7 @@ public class Main {
 
         sc.close();
 
-
+*/
 
        /* ContratoService contratoService = context.getBean(ContratoService.class);
 

@@ -1,6 +1,5 @@
-package org.contratopagamentos.service;
+package org.contratopagamentos.pagamento;
 
-import org.contratopagamentos.model.enums.TipoPagamento;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

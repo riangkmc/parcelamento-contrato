@@ -1,4 +1,4 @@
-package org.contratopagamentos.model.entities;
+package org.contratopagamentos.config;
 
 import jakarta.persistence.*;
 

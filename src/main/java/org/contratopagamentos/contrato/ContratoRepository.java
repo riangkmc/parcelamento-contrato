@@ -1,6 +1,5 @@
-package org.contratopagamentos.repository;
+package org.contratopagamentos.contrato;
 
-import org.contratopagamentos.model.entities.Contrato;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ContratoRepository extends JpaRepository<Contrato,Long> {

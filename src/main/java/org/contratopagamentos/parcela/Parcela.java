@@ -1,6 +1,8 @@
-package org.contratopagamentos.model.entities;
+package org.contratopagamentos.parcela;
 
 import jakarta.persistence.*;
+import org.contratopagamentos.config.Auditable;
+import org.contratopagamentos.contrato.Contrato;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
