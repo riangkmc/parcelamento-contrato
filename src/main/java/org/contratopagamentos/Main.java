@@ -1,19 +1,17 @@
-package org.servicoPagamanto;
+package org.contratopagamentos;
 
-import org.servicoPagamanto.model.entities.Contrato;
-import org.servicoPagamanto.model.entities.Parcela;
-import org.servicoPagamanto.model.enums.TipoPagamento;
-import org.servicoPagamanto.service.ContratoService;
-import org.servicoPagamanto.service.PagamentoService;
-import org.servicoPagamanto.service.PayPalService;
-import org.servicoPagamanto.service.PicPayService;
+import org.contratopagamentos.model.entities.Contrato;
+import org.contratopagamentos.model.entities.Parcela;
+import org.contratopagamentos.service.ContratoService;
+import org.contratopagamentos.service.PagamentoService;
+import org.contratopagamentos.service.PayPalService;
+import org.contratopagamentos.service.PicPayService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 

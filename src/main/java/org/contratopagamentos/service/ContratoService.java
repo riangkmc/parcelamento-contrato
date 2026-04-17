@@ -1,9 +1,9 @@
-package org.servicoPagamanto.service;
+package org.contratopagamentos.service;
 
 import jakarta.transaction.Transactional;
-import org.servicoPagamanto.model.entities.Contrato;
-import org.servicoPagamanto.model.entities.Parcela;
-import org.servicoPagamanto.repository.ContratoRepository;
+import org.contratopagamentos.model.entities.Contrato;
+import org.contratopagamentos.model.entities.Parcela;
+import org.contratopagamentos.repository.ContratoRepository;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;

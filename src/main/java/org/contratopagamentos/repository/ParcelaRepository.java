@@ -1,6 +1,6 @@
-package org.servicoPagamanto.repository;
+package org.contratopagamentos.repository;
 
-import org.servicoPagamanto.model.entities.Parcela;
+import org.contratopagamentos.model.entities.Parcela;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface ParcelaRepository extends JpaRepository<Parcela,Long> {

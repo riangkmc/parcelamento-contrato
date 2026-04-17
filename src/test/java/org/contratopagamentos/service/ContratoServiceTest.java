@@ -1,4 +1,4 @@
-package org.servicoPagamanto.service;
+package org.contratopagamentos.service;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;

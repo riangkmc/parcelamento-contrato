@@ -1,7 +1,7 @@
-package org.servicoPagamanto.service;
+package org.contratopagamentos.service;
 
-import org.servicoPagamanto.model.entities.Parcela;
-import org.servicoPagamanto.repository.ParcelaRepository;
+import org.contratopagamentos.model.entities.Parcela;
+import org.contratopagamentos.repository.ParcelaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
