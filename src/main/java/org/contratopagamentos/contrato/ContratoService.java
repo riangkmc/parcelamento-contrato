@@ -2,6 +2,7 @@ package org.contratopagamentos.contrato;
 
 import jakarta.transaction.Transactional;
 import org.contratopagamentos.parcela.Parcela;
+import org.contratopagamentos.parcela.ParcelaService;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -55,10 +56,31 @@ public class ContratoService {
                 .orElseThrow(() -> new RuntimeException("Contrato não encontrado"));
     }
 
+
+    public static ContratoResponse toResponse(Contrato contrato) {
+        ContratoResponse dto = new ContratoResponse();
+
+        dto.setId(contrato.getId());
+        dto.setNumeroContrato(contrato.getNumeroContrato());
+        dto.setDataContrato(contrato.getDataContrato());
+        dto.setValorTotal(contrato.getValorTotal());
+        dto.setTipoPagamento(contrato.getTipoPagamento());
+        dto.setCriadoEm(contrato.getCriadoEm());
+        dto.setAtualizadoEm(contrato.getAtualizadoEm());
+        dto.setParcelas(
+                contrato.getParcelas()
+                        .stream()
+                        .map(parcela -> ParcelaService.toResponse(parcela)) // ou lambda se quiser evitar ::
+                        .toList()
+        );
+        return dto;
+    }
+
+    @Transactional
     public List<ContratoResponse> listarTodos() {
         return contratoRepository.findAll().
                 stream()
-                .map(contrato -> ContratoMapper.toResponse(contrato))
+                .map(contrato -> this.toResponse(contrato))
                 .toList();
     }
 
