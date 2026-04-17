@@ -55,8 +55,11 @@ public class ContratoService {
                 .orElseThrow(() -> new RuntimeException("Contrato não encontrado"));
     }
 
-    public List<Contrato> listarTodos() {
-        return contratoRepository.findAll();
+    public List<ContratoResponse> listarTodos() {
+        return contratoRepository.findAll().
+                stream()
+                .map(contrato -> ContratoMapper.toResponse(contrato))
+                .toList();
     }
 
     public Contrato atualizar(Contrato contrato) {
